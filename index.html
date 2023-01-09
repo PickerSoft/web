@@ -336,6 +336,9 @@
 				// console.log(prediction[0].probability);
 				
 				if (prediction[0].probability.toFixed(2) >= 0.95) {
+					if (status == 'turtle') {
+						Android.straightCount();
+					}
 					status = 'straight';
 				} else if (prediction[1].probability.toFixed(2) == 1) {
 					if (status == 'straight') {
@@ -343,6 +346,7 @@
 						if (document.getElementById("count-toggle").checked) {
 							count++;
 							$('.counter').html(count);
+							Android.turtleCount(count);
 						}
 
 						// 꼬부기 소리 재생
@@ -367,8 +371,7 @@
 						// 진동
 						if (document.getElementById("vibrate-toggle").checked) {
 							vibrate();
-						}
-						
+						}						
 						
 						// 거북목 자세 캡처
 						fromDataURL();
